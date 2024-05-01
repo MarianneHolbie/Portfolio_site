@@ -2771,9 +2771,9 @@ fieldset:disabled a.btn {
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #695aa6;
-  border-color: #695aa6;
+  color: #000000;
+  background-color: #FCC46A;
+  border-color: #836637;
 }
 
 .btn-primary:hover {
@@ -11075,7 +11075,7 @@ a.text-dark:hover, a.text-dark:focus {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
   font-family: 'Baloo Paaji', cursive;
-  color: #695aa6;
+  color: #FCC46A;
 }
 
 .my-font {
@@ -11718,7 +11718,7 @@ pre .code {
 }
 
 .custom-navbar.affix .logo {
-  color: #695aa6;
+  color: #FCC46A;
 }
 
 .custom-navbar.affix .container {
