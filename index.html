@@ -1,398 +1,966 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Start your development with Meyawo landing page.">
-    <meta name="author" content="Devcrud">
-    <title>Marianne Arrué Portfolio</title>
-    <!-- font icons -->
-    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
-    <!-- Bootstrap + Meyawo main styles -->
-    <link rel="stylesheet" href="assets/css/meyawo.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marianne Arrue | Biotech, Médiation Scientifique & IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+        }
+
+        .tech-bg {
+            background-color: #f8fafc;
+            background-image:
+                    radial-gradient(at 0% 0%, hsla(210,80%,90%,0.2) 0px, transparent 50%),
+                    radial-gradient(at 100% 0%, hsla(340,80%,90%,0.2) 0px, transparent 50%);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #c026d3 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4f46e5;
+            border: 4px solid #e9d5ff;
+        }
+
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: #c4b5fd;
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .animated-underline {
+            position: relative;
+            display: inline-block;
+        }
+
+        .animated-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #4f46e5;
+            transition: width 0.3s ease;
+        }
+
+        .animated-underline:hover::after {
+            width: 100%;
+        }
+
+        .wave-shape {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            z-index: 1;
+        }
+
+        .wave-shape svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 150px;
+        }
+
+        .wave-shape .shape-fill {
+            fill: #FFFFFF;
+        }
+
+        .tech-tag {
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-buttons {
+            position: relative;
+            z-index: 10;
+            margin-bottom: 40px;
+        }
+
+        .blog-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .carousel-slide {
+            display: none;
+            width: 100%;
+            transition: opacity 0.5s ease;
+        }
+
+        .carousel-slide.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+        }
+
+        .carousel-dot.active {
+            background: white;
+        }
+    </style>
 </head>
+<body class="tech-bg">
+<!-- Navigation -->
+<nav class="bg-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="flex justify-between items-center py-4">
+            <div class="flex items-center space-x-4">
+                <a href="#" class="flex items-center">
+                    <img src="./imgs/Logo_MA_emotscience.png" alt="Marianne Arrue" class="h-16">
+                    <span class="text-2xl font-bold text-indigo-600">Marianne Arrué</span>
+                </a>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#parcours" class="text-gray-700 hover:text-indigo-600 animated-underline">Parcours</a>
+                <a href="#expertise" class="text-gray-700 hover:text-indigo-600 animated-underline">Expertise</a>
+                <a href="#projets" class="text-gray-700 hover:text-indigo-600 animated-underline">Projets</a>
+                <a href="#blog" class="text-gray-700 hover:text-indigo-600 animated-underline">Blog</a>
+                <a href="#contact" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition duration-300">Contact</a>
+            </div>
+            <div class="md:hidden flex items-center">
+                <button class="outline-none mobile-menu-button">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                        <path d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
 
-<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-
-    <!-- Page Navbar -->
-    <nav class="custom-navbar" data-spy="affix" data-offset-top="20">
-        <div class="container">
-            <a class="logo" href="#">
-                <img src="assets/imgs/Small_MA-logoBrand.png"> Marianne Arrué</a>
-            <ul class="nav">
-                <li class="item">
-                    <a class="link" href="#home">Home</a>
-                </li>
-                <li class="item">
-                    <a class="link" href="#about">A propos</a>
-                </li>
-                <li class="item">
-                    <a class="link" href="#portfolio">Portfolio</a>
-                </li>
-                <li class="item">
-                    <a class="link" href="#blog">Blog</a>
-                </li>
-                <li class="item">
-                    <a class="link" href="#contact">Contact</a>
-                </li>
-            </ul>
-            <a href="javascript:void(0)" id="nav-toggle" class="hamburger hamburger--elastic">
-                <div class="hamburger-box">
-                    <div class="hamburger-inner"></div>
+<!-- Hero Section -->
+<section class="hero-gradient text-white relative pb-32">
+    <div class="max-w-6xl mx-auto px-4 pt-24 md:pt-32">
+        <div class="flex flex-col md:flex-row items-center hero-content">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Apprivoisez L'IA</h1>
+                <p class="text-xl mb-8">Ingénieure en développement spécialisée en IA/ML avec une approche pédagogique. Je crée des prototypes intelligents et je rends l'IA accessible à tous.</p>
+                <div class="flex flex-wrap gap-4 mb-8">
+                    <span class="px-3 py-1 bg-white/20 rounded-full text-sm">IA/ML</span>
+                    <span class="px-3 py-1 bg-white/20 rounded-full text-sm">Développement</span>
+                    <span class="px-3 py-1 bg-white/20 rounded-full text-sm">Vulgarisation</span>
+                    <span class="px-3 py-1 bg-white/20 rounded-full text-sm">Formation</span>
                 </div>
+                <div class="flex flex-col sm:flex-row gap-4 hero-buttons">
+                    <a href="#contact" class="px-6 py-3 bg-white text-indigo-600 rounded-md font-semibold hover:bg-gray-100 transition duration-300 text-center">Travaillons ensemble</a>
+                    <a href="#simple-comme-ml" class="px-6 py-3 border border-white text-white rounded-md font-semibold hover:bg-white hover:text-indigo-600 transition duration-300 text-center">Simple Comme ML</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center mt-10 md:mt-0">
+                <div class="relative">
+                    <div class="w-64 h-64 md:w-80 md:h-80 bg-white rounded-full shadow-2xl overflow-hidden border-4 border-indigo-300">
+                        <img src="./imgs/IMG_3044.jpg" alt="Marianne Arrue" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-indigo-800 rounded-full p-4 shadow-lg">
+                        <i class="fas fa-brain text-3xl text-white"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wave-shape" style="bottom: -1px;">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+        </svg>
+    </div>
+</section>
+
+<!-- Parcours Section -->
+<section id="parcours" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">Mon Parcours</h2>
+            <div class="w-20 h-1 bg-indigo-600 mx-auto mb-6"></div>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">De la biotechnologie à l'intelligence artificielle, un parcours unique au service de l'innovation.</p>
+        </div>
+
+        <div class="relative pl-12">
+            <!-- Biotech -->
+            <div class="relative mb-12 timeline-item">
+                <div class="bg-indigo-50 p-6 rounded-lg shadow-sm timeline-line">
+                    <div class="flex flex-col md:flex-row md:items-center mb-4">
+                        <h3 class="text-2xl font-bold text-indigo-700">Ingénieure en Biotechnologie</h3>
+                        <span class="md:ml-4 text-indigo-600">6 ans à l'INSERM</span>
+                    </div>
+                    <p class="text-gray-700 mb-4">Recherche sur un modèle murin de lymphome, développant une rigueur scientifique et un esprit d'analyse.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm tech-tag">Recherche biomédicale</span>
+                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm tech-tag">Méthodologie scientifique</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Médiation -->
+            <div class="relative mb-12 timeline-item">
+                <div class="bg-purple-50 p-6 rounded-lg shadow-sm timeline-line">
+                    <div class="flex flex-col md:flex-row md:items-center mb-4">
+                        <h3 class="text-2xl font-bold text-purple-700">Médiation & Vulgarisation Scientifique</h3>
+                        <span class="md:ml-4 text-purple-600">+ 10 ans</span>
+                    </div>
+                    <p class="text-gray-700 mb-4">Organisation de festivals, ateliers et création de contenus pédagogiques accessibles. Rédaction de la Lettre Enseignement supérieur recherche pour la région.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm tech-tag">Pédagogie</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm tech-tag">Animation</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm tech-tag">Rédaction scientifique</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Freelance -->
+            <div class="relative mb-12 timeline-item">
+                <div class="bg-pink-50 p-6 rounded-lg shadow-sm timeline-line">
+                    <div class="flex flex-col md:flex-row md:items-center mb-4">
+                        <h3 class="text-2xl font-bold text-pink-700">Médiation Numérique & Informatique</h3>
+                        <span class="md:ml-4 text-pink-600">Plusieurs projets</span>
+                    </div>
+                    <p class="text-gray-700 mb-4">Création de contenus pédagogiques pour l'initiation à l'informatique sans écran pour les enfants. Travail avec des décrocheurs scolaires en médiation avec la vidéo.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-sm tech-tag">EdTech</span>
+                        <span class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-sm tech-tag">Formation</span>
+                        <span class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-sm tech-tag">Création de contenu</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Holberton -->
+            <div class="relative timeline-item">
+                <div class="bg-blue-50 p-6 rounded-lg shadow-sm">
+                    <div class="flex flex-col md:flex-row md:items-center mb-4">
+                        <h3 class="text-2xl font-bold text-blue-700">Développement & Spécialisation IA/ML</h3>
+                        <span class="md:ml-4 text-blue-600">2 ans à la Holberton School</span>
+                    </div>
+                    <p class="text-gray-700 mb-4">Formation intensive en développement logiciel en mode projet avec spécialisation en Machine Learning et Intelligence Artificielle.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm tech-tag">Python</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm tech-tag">Machine Learning</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm tech-tag">Développement web</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Expertise Section -->
+<section id="expertise" class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">Mes Services</h2>
+            <div class="w-20 h-1 bg-indigo-600 mx-auto mb-6"></div>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Je combine expertise technique et pédagogique pour rendre l'IA accessible et utile.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-lg shadow-md card-hover">
+                <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
+                    <i class="fas fa-laptop-code text-3xl text-indigo-600"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 text-gray-800">Développement de prototypes IA/ML</h3>
+                <p class="text-gray-600 mb-4">Création de POC et prototypes intégrant des technologies d'intelligence artificielle pour visualiser les possibilités.</p>
+                <ul class="space-y-2 text-gray-600">
+                    <li class="flex items-start">
+                        <span class="text-primary mr-2">•</span>
+                        <span>Prototypes et démonstrateurs</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-primary mr-2">•</span>
+                        <span>Intégration d'API d'IA</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-primary mr-2">•</span>
+                        <span>Dashboards et visualisations</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-white p-8 rounded-lg shadow-md card-hover">
+                <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
+                    <i class="fas fa-chalkboard-teacher text-3xl text-purple-600"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 text-gray-800">Formation et vulgarisation IA/ML</h3>
+                <p class="text-gray-600 mb-4">Rendre l'IA accessible grâce à des formations sur mesure et du contenu pédagogique adapté aux non-spécialistes.</p>
+                <ul class="space-y-2 text-gray-600">
+                    <li class="flex items-start">
+                        <span class="text-primary mr-2">•</span>
+                        <span>Ateliers d'initiation à l'IA</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-primary mr-2">•</span>
+                        <span>Modules de formation personnalisés</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-primary mr-2">•</span>
+                        <span>Contenus "Simple Comme ML"</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-white p-8 rounded-lg shadow-md card-hover">
+                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                    <i class="fas fa-comments text-3xl text-blue-600"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 text-gray-800">Conseil et médiation technique</h3>
+                <p class="text-gray-600 mb-4">Faciliter le dialogue entre équipes techniques et décideurs, simplifier les concepts complexes pour la prise de décision.</p>
+                <ul class="space-y-2 text-gray-600">
+                    <li class="flex items-start">
+                        <span class="text-primary mr-2">•</span>
+                        <span>Médiation technique</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-primary mr-2">•</span>
+                        <span>Audit et recommandations</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-primary mr-2">•</span>
+                        <span>Spécification de projets</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Simple Comme ML Section -->
+<section id="simple-comme-ml" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">Simple Comme ML</h2>
+            <div class="w-20 h-1 bg-indigo-600 mx-auto mb-6"></div>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Une série de contenus pédagogiques qui simplifient les concepts complexes de l'IA et du Machine Learning.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <!-- Article 1 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover border border-gray-200">
+                <div class="h-40 bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center">
+                    <i class="fas fa-network-wired text-4xl text-white"></i>
+                </div>
+                <div class="p-6">
+                    <span class="text-sm text-indigo-600">Avril 2025</span>
+                    <h3 class="text-xl font-bold my-2 text-gray-800">L'évolution des LLMs : Model Context Protocol</h3>
+                    <p class="text-gray-600 mb-4">Et si votre IA pouvait parler à tous vos outils comme par magie… sans que vous ayez à tout recoder ?</p>
+                    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7320340711063642113/" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium inline-flex items-center">
+                        Lire sur LinkedIn
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Article 2 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover border border-gray-200">
+                <div class="h-40 bg-gradient-to-r from-blue-500 to-teal-500 flex items-center justify-center">
+                    <i class="fas fa-screwdriver-wrench text-4xl text-white"></i>
+                </div>
+                <div class="p-6">
+                    <span class="text-sm text-blue-600"> Mars 2025</span>
+                    <h3 class="text-xl font-bold my-2 text-gray-800">Les outils de l'artisan IA</h3>
+                    <p class="text-gray-600 mb-4">Comme l'ébéniste qui choisit minutieusement ses rabots, scies et ciseaux selon le projet, le data scientist sélectionne ses frameworks, librairies et environnements de développement avec discernement.</p>
+                    <a href="https://www.linkedin.com/posts/mariannearrue_simple-comme-ml-n10-activity-7305490307612065794-43c6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAXypxIBmrHs_NCCbAo7a4t8_2trm0d2tWg" target="_blank" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
+                        Lire sur LinkedIn
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Article 3 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover border border-gray-200">
+                <div class="h-40 bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+                    <i class="fas fa-hand text-4xl text-white"></i>
+                </div>
+                <div class="p-6">
+                    <span class="text-sm text-purple-600">Janvier 2025</span>
+                    <h3 class="text-xl font-bold my-2 text-gray-800">Les Arbitres Secrets de vos Modèles ML</h3>
+                    <p class="text-gray-600 mb-4">Imaginez la loss fonction comme un arbitre impartial qui mesure l'écart entre la prédiction de votre modèle et la réalité.</p>
+                    <a href="https://www.linkedin.com/posts/mariannearrue_simple-comme-ml-n8-loss-function-en-r%C3%A9gression-activity-7274446127188307968-jtpu?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAXypxIBmrHs_NCCbAo7a4t8_2trm0d2tWg" target="_blank" class="text-purple-600 hover:text-purple-800 font-medium inline-flex items-center">
+                        Lire sur LinkedIn
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <a href="https://www.linkedin.com/in/mariannearrue/recent-activity/all/" target="_blank" class="px-8 py-3 bg-indigo-600 text-white rounded-md font-semibold hover:bg-indigo-700 transition duration-300 inline-flex items-center">
+                <i class="fab fa-linkedin-in mr-2"></i> Voir tous les articles sur LinkedIn
             </a>
         </div>
-    </nav><!-- End of Page Navbar -->
+    </div>
+</section>
 
-    <!-- page header -->
-    <header id="home" class="header">
-        <div class="overlay"></div>
-        <div class="header-content container">
-            <h1 class="header-title">
-
-                <span class="down">Marianne Arrué</span>
-            </h1>
-            <p class="header-subtitle">SOFTWARE ENGINEER <br>& MACHINE LEARNING </p>
-
-            <a class="link btn btn-primary" href="#about">En savoir plus</a>
+<!-- Projects Section -->
+<section id="projets" class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">Mes Réalisations</h2>
+            <div class="w-20 h-1 bg-indigo-600 mx-auto mb-6"></div>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Des projets concrets à l'intersection de l'IA, l'éducation et la vulgarisation scientifique.</p>
         </div>
-    </header><!-- end of page header -->
 
-    <!-- about section -->
-    <section class="section pt-0" id="about">
-        <!-- container -->
-        <div class="container text-center">
-            <!-- about wrapper -->
-            <div class="about">
-                <div class="about-img-holder">
-                    <img src="assets/imgs/IMG_0170.jpg" class="about-img"
-                        alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+        <!-- Une seule grille principale pour tous les projets -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Projet 1 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover">
+                <div class="h-48 bg-indigo-600 flex items-center justify-center">
+                    <i class="fa-solid fa-ear-deaf text-6xl text-white"></i>
                 </div>
-                <div class="about-caption">
-                    <p class="section-subtitle">Qui je suis?</p>
-                    <h2 class="section-title mb-3"> A propos de moi</h2>
-                    <p>
-                        Je suis une voyageuse. Mon Odyssée ? Elle a commencé par le monde de la 
-                        biotechnologie (expérience professionnelle de 6 ans en tant qu’ingénieure 
-                        de recherche à l’INSERM) avant de naviguer dans les eaux de la médiation 
-                        scientifique (10 ans d’expérience en ingénierie pédagogique - médiation, 
-                        communication scientifique), pour découvrir maintenant le territoire de 
-                        l'informatique et ses îles de l'intelligence artificielle et du Machine Learning.
-                        <br> Ma curiosité et mes capacités d'apprentissage sont mes moteurs. 
-                        Je ne sais pas tout, mais je peux apprendre.
-                        <br>Chaque défis est une occasion d'apprendre, de compléter le "mur de mes compétences" où chacune a sa place et renforce les autres. 
-                        <br>
-                        <br>
-                            Si vous avez une idée d'aventure, pour des projets utiles, innovants et engageants., n'hésitez pas à me contacter !
-                    </p>
-                    <button class="btn-rounded btn btn-outline-primary mt-4">
-                        <a href="https://drive.google.com/file/d/18yofOSM2sHarFRL_b1eyXndpoNet516h/view?usp=sharing" target="_blank" rel="noopener noreferrer">Mon CV</a></button>
-                </div>
-            </div><!-- end of about wrapper -->
-        </div><!-- end of container -->
-    </section> <!-- end of about section -->
-
-    <!-- service section -->
-    <section class="section" id="service">
-        <div class="container text-center">
-            <!-- <p class="section-subtitle">What I Do ?</p> -->
-            <h6 class="section-title mb-6">Compétences</h6>
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-6 col-lg-3">
-                    <div class="service-card">
-                        <div class="body">
-                            <img src="assets/imgs/pencil-case.svg"
-                                alt="Tool"
-                                class="icon">
-                            <h6 class="title">Gestion de projets</h6>
-                            <p class="subtitle">Forte expérience dans la planification,
-                                 l'organisation et le suivi de projets complexes garantissant
-                                   une exécution efficace dans le respect des délais et des budgets
-                                    impartis.</p>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">App pour renforcer la maîtrise du vocabulaire du public sourd</h3>
+                    <p class="text-gray-600 mb-4">Application mobile Vocabul'o Quiz thématique & un quiz journalier généré par ML.</p>
+                    <div class="mt-4 mb-2">
+                        <a href="https://vocabulolp.vercel.app/" target="_blank" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition duration-300 inline-block">
+                            Voir le projet
+                        </a>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs">React</span>
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs">Python</span>
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs">ML</span>
+                            <span class="px-3 py-1 bg-indigo-100 text-blue-800 rounded-full text-xs">XG-boost</span>
+                            <span class="px-3 py-1 bg-indigo-100 text-blue-800 rounded-full text-xs">API</span>
+                            <span class="px-3 py-1 bg-indigo-100 text-blue-800 rounded-full text-xs">Docker</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="service-card">
-                        <div class="body">
-                            <img src="assets/imgs/responsive.svg"
-                                alt="Picto responsive"
-                                class="icon">
-                            <h6 class="title">Front end</h6>
-                            <p class="subtitle">Conception et développement d'interfaces utilisateur modernes, réactives et ergonomiques en utilisant les dernières technologies front-end telles que React ou Svelte.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="service-card">
-                        <div class="body">
-                            <img src="assets/imgs/toolbox.svg"
-                                alt="picto toolbox"
-                                class="icon">
-                            <h6 class="title">Back end</h6>
-                            <p class="subtitle">Développement robuste d'API RESTful et de services
-                                 back-end hautement performants et évolutifs (Python, Node.js...), tout en assurant la sécurité, la fiabilité et
-                                  la facilité de maintenance du code.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="service-card">
-                        <div class="body">
-                            <img src="assets/imgs/analytics.svg"
-                                alt="data"
-                                class="icon">
-                            <h6 class="title">Data Analyse - Machine learning</h6>
-                            <p class="subtitle">Expertise dans l'extraction, le traitement et l'analyse de données complexes (Python, SQL...)
-                                Conception, entrainement et deploiement de modèle de ML (Tensorflow, Scikit-learn...)</p>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- end of row -->
-        </div>
-    </section><!-- end of service section -->
-
-    <!-- portfolio section -->
-    <section class="section" id="portfolio">
-        <div class="container text-center">
-            <!-- <p class="section-subtitle">What I Did ?</p> -->
-            <h6 class="section-title mb-6">Portfolio</h6>
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-4">
-                    <a href="#" class="portfolio-card">
-                        <img src="assets/imgs/VocabuloBoth.png" class="portfolio-card-img"
-                            alt="Vocabulo project">
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Machine Learning App</h5>
-                                    <p class="font-weight-normal">Category: Machine Learning - Mobile App
-                                        <br>2 app mobile pour le public sourd : une application de quizz & une application d'aide à l'accessibilité des livres jeunesses.</p>
-                            </span>
-                        </span>
-                    </a>
-                    <div>
-                        <button class="btn-rounded btn btn-outline-primary mt-4">
-                        <a href="https://vocabulolp.vercel.app/">Landing Page</a>
-                        </button>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <a href="#" class="portfolio-card">
-                        <img src="assets/imgs/ProjectSidemanBand.png" class="portfolio-card-img"
-                            alt="Montage SidemanBand front">
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Web Designing</h5>
-                                    <p class="font-weight-normal">Category: Front- & Back- end
-                                        <br>Web app pour que les musiciens trouvent des remplaçant lorsqu'ils ont un concert mais un absent.</p>
-                            </span>
-                        </span>
-                    </a>
-                    <div>
-                        <button class="btn-rounded btn btn-outline-primary mt-4">
-                        <a href="https://sidemanband-lp.vercel.app/">Landing Page</a>
-                        </button>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <a href="#" class="portfolio-card">
-                        <img class="portfolio-card-img" src="assets/imgs/Portfolio2.png" class="img-responsive rounded"
-                            alt="Montage Yolo">
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Détection d'objets</h5>
-                                    <p class="font-weight-normal">Category: Machine Learning. 
-                                        <br> Utilisation modèle de deep learning Yolo pour détecter des objets dans des images.</p>
-                                    </p>
-                            </span>
-                        </span>
-                    </a>
-                    <div>
-                    <button class="btn-rounded btn btn-outline-primary mt-4">
-                        <a href="https://github.com/MarianneHolbie/MachineLearning_project/blob/main/supervised_learning/object_detection">github</a>
-                    </button>    
-                </div>
-                </div>
-                <div class="col-md-4">
-                    <a href="#" class="portfolio-card">
-                        <img class="portfolio-card-img" src="assets/imgs/Portfolio3.png" class="img-responsive rounded"
-                            alt="Montage Neural Style transfert photo - peinture">
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Neural Style transfer</h5>
-                                    <p class="font-weight-normal">Category: Machine Learning
-                                        <br> Utilisation de l'algorithme de style transfer pour transformer une image en lui appliquant le style d'une autre.</p>
-                                    </p>
-                            </span>
-                        </span>
-                    </a>
-                    <div>
-                        <button class="btn-rounded btn btn-outline-primary mt-4">
-                            <a href="https://github.com/MarianneHolbie/MachineLearning_project/blob/main/supervised_learning/neural_style_transfer">github</a>
-                        </button>
-                        </div>
-                </div>
-            </div><!-- end of row -->
-        </div><!-- end of container -->
-    </section> <!-- end of portfolio section -->
-
-    
-    <!-- section -->
-    <section class="section-sm bg-primary">
-        <!-- container -->
-        <div class="container text-center text-sm-left">
-            <!-- row -->
-            <div class="row align-items-center">
-                <div class="col-sm offset-md-1 mb-4 mb-md-0">
-                    <h6 class="title text-light">Vous avec un projet, des besoins ?</h6>
-                    <p class="m-0 text-light">Echangeons et collaborons !</p>
-                </div>
-                <div class="col-sm offset-sm-2 offset-md-3">
-                    <button class="btn btn-lg my-font btn-light rounded">Contactez moi
-
-                    </button>
-                </div>
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </section> <!-- end of section -->
-
-    <!-- blog section -->
-    <section class="section" id="blog">
-        <!-- container -->
-        <div class="container text-center">
-            <p class="section-subtitle">Articles</p>
-            <h6 class="section-title mb-6">Blog</h6>
-
-            <!-- blog-wrapper -->
-            <div class="blog-card">
-                <div class="blog-card-header">
-                    <img src="assets/imgs/VocabuloAll.png" class="blog-card-img"
-                        alt="Logo Vocabulo">
-                </div>
-                <div class="blog-card-body">
-                    <h5 class="blog-card-title">Empowering the Deaf Community Through AI: The Vocabul’o Project</h6>
-
-                        <p class="blog-card-caption">
-                            <a href="#">By: Marianne Arrué</a>
-                            <a href="#">On: Medium blog</a>
-                        </p>
-                        <p>Premier article d'une série de 5, où je retrace les étapes et le parcours de conception des deux applications à destination du public sourd, conçues (en collaboration avec 2 étudiantes FullStack) dans le cadre de mon projet Portfolio de fin de spécialisation HolbertonSchool.</p>
-
-                        <a href="https://medium.com/p/ceac6ca1c051" class="blog-card-link">Lire  <i class="ti-angle-double-right"></i></a>
-                </div>
-            </div><!-- end of blog wrapper -->
-
-            <!-- blog-wrapper -->
-            <div class="blog-card">
-                <div class="blog-card-header">
-                    <img src="assets/imgs/Blog1.png" class="blog-card-img"
-                        alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
-                </div>
-                <div class="blog-card-body">
-                    <h5 class="blog-card-title">Optimizing Machine Learning Models: A Journey with GPyOpt</h6>
-
-                        <p class="blog-card-caption">
-                            <a href="#">By: Marianne Arrué</a>
-                            <a href="#">On: Medium blog</a>
-                        </p>
-                        <p>Cette semaine, en tant qu'étudiante en spécialisation AI-ML au sein de Holberton School France, le sujet était l'optimisation des hyperparamètres d'un modèle avec GPyOpt (notamment Bayesian optimization).
-                            Un nouveau challenge relevé, et un nouvel article publié!</p>
-
-                        <a href="https://medium.com/@marianne.arrue/optimizing-machine-learning-models-a-journey-with-gpyopt-304d8b28a9f1" class="blog-card-link">Lire  <i class="ti-angle-double-right"></i></a>
-                </div>
-            </div><!-- end of blog wrapper -->
-
-            <!-- blog-wrapper -->
-            <div class="blog-card">
-                <div class="blog-card-header">
-                    <img src="assets/imgs/TransferLearning.png" class="blog-card-img"
-                        alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
-                </div>
-                <div class="blog-card-body">
-                    <h5 class="blog-card-title">Embarking on the Transfer Learning Journey: A Keras Adventure with CIFAR-10</h6>
-
-                        <p class="blog-card-caption">
-                            <a href="#">By: Marianne Arrué</a>
-                            <a href="#">On: Medium blog</a>
-                        </p>
-
-                        <p>Nouvelle aventure cette semaine : premier pas en hashtag#TransferLearning !
-
-                            Un monde passionnant, qui est un peu à l'image de ce que je fais tous les jours (utiliser mes compétences apprises dans d'autres domaines à mon nouveau terrain de jeu : l'hashtag#IA et le hashtag#MachineLearning).
-                            Quelques sueurs froides au début sur la gestion de mon matériel informatique pour ces techniques qui demandent tout de même un matériel performant pour mener à bout les entrainements et diverses optimisations.
-                            Mais au final, la fierté d'obtenir un modèle qui avoisine les 94% d'accuracy avec un rapport de classification et une matrice de confusion fort intéressante. Seul le timing a eu raison de mes tests pour optimiser le modèle !</p>
-
-                        <a href="https://medium.com/@marianne.arrue/embarking-on-the-transfer-learning-journey-a-keras-adventure-with-cifar-10-332be2656ac3" class="blog-card-link">Lire  <i class="ti-angle-double-right"></i></a>
-                </div>
-            </div><!-- end of blog wrapper -->
-
-             <!-- blog-wrapper -->
-             <div class="blog-card">
-                <div class="blog-card-header">
-                    <img src="assets/imgs/blogpost3.png" class="blog-card-img"
-                        alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
-                </div>
-                <div class="blog-card-body">
-                    <h5 class="blog-card-title">Simple comme ML</h6>
-
-                        <p class="blog-card-caption">
-                            <a href="#">By: Marianne Arrué</a>
-                            <a href="#">On: Linkedin</a>
-                        </p>
-
-                        <p>Depuis que je plonge dans le monde fabuleux du Machine Learning, l'envie de vulgariser les concepts, les informations complexes comme les plus basiques (et en français pour une fois), me démange ... 
-
-                            On commence par la base : vous avez dit Machine Learning ? Le tout dans un format très court pour aller à l'essentiel.</p>
-
-                        <a href="https://www.linkedin.com/posts/mariannearrue_simple-comme-ml-1-activity-7190660720907177984-O1Mw?utm_source=share&utm_medium=member_desktop">Lire  <i class="ti-angle-double-right"></i></a>
-                </div>
-            </div><!-- end of blog wrapper -->
-
-        </div><!-- end of container -->
-    </section><!-- end of blog section -->
-
-    <!-- contact section -->
-    <section class="section" id="contact">
-        <div class="container text-center">
-            <p class="section-subtitle">Envie d'en savoir plus ?</p>
-            <h6 class="section-title mb-5">Contactez Moi</h6>
-            <!-- contact form -->
-            <!-- Adresse e-mail -->
-        <p class="email">Mail : marianne.arrue@holbertonstudents.com</p>
-        </div><!-- end of container -->
-    </section><!-- end of contact section -->
-
-    <!-- footer -->
-    <div class="container">
-        <footer class="footer">
-            <p class="mb-0">Copyright
-                <script>document.write(new Date().getFullYear())</script> &copy; <a
-                    href="http://www.devcrud.com">DevCRUD</a> Distribution <a
-                    href="https://themewagon.com">ThemeWagon</a>
-            </p>
-            <div class="social-links text-right m-auto ml-sm-auto">
-
-                <a href="https://medium.com/@marianne.arrue" class="link" ><i class="ti-angle-double-right"></i></a>
-                <a href="https://github.com/MarianneHolbie" class="link"><i class="ti-github"></i></a>
-                <a href="https://www.linkedin.com/in/mariannearrue/" class="link"><i class="ti-linkedin"></i></a>
             </div>
-        </footer>
-    </div> <!-- end of page footer -->
 
-    <!-- core  -->
-    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
-    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+            <!-- Projet 2 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover">
+                <div class="h-48 bg-indigo-600 flex items-center justify-center">
+                    <i class="fa-solid fa-ear-deaf text-6xl text-white"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">App rendre les livres jeunesses accessibles aux enfants sourds</h3>
+                    <p class="text-gray-600 mb-4">Application mobile Vocabul'o Kid match les signes en LSF avec les mots d'un texte.</p>
+                    <div class="mt-4 mb-2">
+                        <a href="https://vocabulolp.vercel.app/" target="_blank" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition duration-300 inline-block">
+                            Voir le projet
+                        </a>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs">React</span>
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs">Python</span>
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs">ML</span>
+                            <span class="px-3 py-1 bg-indigo-100 text-blue-800 rounded-full text-xs">NLP</span>
+                            <span class="px-3 py-1 bg-indigo-100 text-blue-800 rounded-full text-xs">Tesseract</span>
+                            <span class="px-3 py-1 bg-indigo-100 text-blue-800 rounded-full text-xs">Docker</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <!-- bootstrap 3 affix -->
-    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+            <!-- Projet 3 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover">
+                <div class="h-48 bg-purple-600 flex items-center justify-center">
+                    <i class="fas fa-child text-6xl text-white"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Atelier d'initiation à l'IA pour enfants</h3>
+                    <p class="text-gray-600 mb-4">Programme pédagogique pour initier les enfants aux concepts de l'IA sans écran.</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">Pédagogie</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">Vulgarisation</span>
+                            <span class="px-3 py-1 bg-purple-100 text-blue-800 rounded-full text-xs">Logique</span>
+                            <span class="px-3 py-1 bg-purple-100 text-blue-800 rounded-full text-xs">Algorithmie</span>
+                            <span class="px-3 py-1 bg-purple-100 text-blue-800 rounded-full text-xs">Esprit critique</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <!-- Meyawo js -->
-    <script src="assets/js/meyawo.js"></script>
+            <!-- Projet 4 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover">
+                <div class="h-48 bg-blue-600 flex items-center justify-center">
+                    <i class="fas fa-lightbulb text-6xl text-white"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Prototype de recommandation personnalisée</h3>
+                    <p class="text-gray-600 mb-4">POC d'un système de recommandation d'objectif de coaching & de coach correspondant.</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">IA</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">API</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">TF-IDF</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">Model Stacked-ensemble</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">Whisper</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
+<!-- Blog Section -->
+<section id="blog" class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">Mon Blog</h2>
+            <div class="w-20 h-1 bg-indigo-600 mx-auto mb-6"></div>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Quelques articles et carrousels de vulgarisation autour de l'IA</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <!-- Article 1 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-md blog-card">
+                <div class="h-48 bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center">
+                    <i class="fas fa-key text-6xl text-white"></i>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <span class="text-sm text-indigo-600">Avril 2025</span>
+
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">MCP : l'USB-C de l'IA</h3>
+                    <p class="text-gray-600 mb-4">Comment le MCP transforme radicalement l'intégration des IA dans nos systèmes.</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex space-x-2">
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs">IA</span>
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs">MCP</span>
+                        </div>
+                        <a href="https://www.linkedin.com/posts/mariannearrue_nouvel-article-model-context-protocol-activity-7321065502334767104-f5RA?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAXypxIBmrHs_NCCbAo7a4t8_2trm0d2tWg" class="text-indigo-600 hover:text-indigo-800 font-medium">Lire l'article sur LinkedIn→</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 2 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-md blog-card">
+                <div class="h-48 bg-gradient-to-r from-blue-500 to-cyan-600 flex items-center justify-center">
+                    <i class="fas fa-arrow-up-from-bracket text-6xl text-white"></i>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <span class="text-sm text-blue-600">Juillet 2024</span>
+                        <span class="mx-2 text-gray-400">•</span>
+                        <span class="text-sm text-gray-500">9 min de lecture</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">From One to Many: Unlocking the Potential of Your Dataset with Augmentation</h3>
+                    <p class="text-gray-600 mb-4">La data augmentation, une technique puissante qui révolutionne la façon dont nous formons les modèles d'IA.</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex space-x-2">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">Machine Learning</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">Data</span>
+                        </div>
+                        <a href="https://medium.com/@marianne.arrue/from-one-to-many-unlocking-the-potential-of-your-dataset-with-augmentation-a2033508be6d" class="text-blue-600 hover:text-blue-800 font-medium">Lire l'article→</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 3 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-md blog-card">
+                <div class="h-48 bg-gradient-to-r from-blue-500 to-cyan-600 flex items-center justify-center">
+                    <i class="fas fa-dna text-6xl text-white"></i>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <span class="text-sm text-blue-600">Février 2024</span>
+                        <span class="mx-2 text-gray-400">•</span>
+                        <span class="text-sm text-gray-500">22 min de lecture</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Embarking on the Transfer Learning Journey: A Keras Adventure with CIFAR-10</h3>
+                    <p class="text-gray-600 mb-4">Mon premier pas à pas dans le monde du transfert learning</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex space-x-2">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">Transfer Learning</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">Keras</span>
+                        </div>
+                        <a href="https://medium.com/@marianne.arrue/embarking-on-the-transfer-learning-journey-a-keras-adventure-with-cifar-10-332be2656ac3" class="text-blue-600 hover:text-blue-800 font-medium">Lire l'article→</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 4 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-md blog-card">
+                <div class="h-48 bg-gradient-to-r from-blue-500 to-cyan-600 flex items-center justify-center">
+                    <i class="fas fa-seedling text-6xl text-white"></i>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <span class="text-sm text-blue-600">Janvier 2024</span>
+                        <span class="mx-2 text-gray-400">•</span>
+                        <span class="text-sm text-gray-500">6 min de lecture</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Cultivating Balance: A Guide to Regularization Techniques in Deep Learning</h3>
+                    <p class="text-gray-600 mb-4">Difficile équilibre entre optimisation et généralisation pour un modèle performant</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex space-x-2">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">Dropout</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">Regularization</span>
+                        </div>
+                        <a href="https://medium.com/@marianne.arrue/cultivating-balance-a-guide-to-regularization-techniques-in-deep-learning-054f0f471351" class="text-blue-600 hover:text-blue-800 font-medium">Lire l'article→</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carousel de vulgarisation -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <h3 class="text-2xl font-bold p-6 pb-0 text-gray-800">Mes TIPS sur LinkedIn</h3>
+            <p class="text-gray-600 px-6">Partager son expertise, c'est aussi partager quelques tips utiles à la communauté</p>
+
+            <div class="carousel-container mt-6">
+                <!-- Slide 1 -->
+                <div class="carousel-slide active">
+                    <div class="h-96 bg-gradient-to-br from-purple-500 to-pink-600 flex flex-col items-center justify-center p-8 text-white">
+                        <h4 class="text-2xl font-bold mb-4">TIPS Hugging Face</h4>
+                        <p class="text-center mb-6">Parceque l'open-source est formidable mais encore faut-il savoir l'utiliser.</p>
+                        <div class="flex space-x-4">
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">#Vulgarisation</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">#IA</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">#Open source</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-slide">
+                    <div class="h-96 bg-gradient-to-br from-blue-500 to-teal-600 flex flex-col items-center justify-center p-8 text-white">
+                        <h4 class="text-2xl font-bold mb-4">TOOLS</h4>
+                        <p class="text-center mb-6">Parce que trouver le bon outils, la bonne bibliothèque n'est pas toujours simple.</p>
+                        <div class="flex space-x-4">
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">#Outils</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">#ML</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">#Dev</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-slide">
+                    <div class="h-96 bg-gradient-to-br from-green-500 to-emerald-600 flex flex-col items-center justify-center p-8 text-white">
+                        <h4 class="text-2xl font-bold mb-4">Partage d'articles</h4>
+                        <p class="text-center mb-6">Se tenir au courant, assurer une veille et partager les bonnes sources.</p>
+                        <div class="flex space-x-4">
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">#Veille</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">#Source</span>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">#Expertise</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-nav">
+                    <div class="carousel-dot active" data-slide="0"></div>
+                    <div class="carousel-dot" data-slide="1"></div>
+                    <div class="carousel-dot" data-slide="2"></div>
+                </div>
+            </div>
+
+            <div class="p-6 text-center">
+                <a href="https://www.linkedin.com/in/mariannearrue/recent-activity/all/" target="_blank" class="inline-flex items-center px-6 py-3 bg-indigo-600 text-white rounded-md font-semibold hover:bg-indigo-700 transition duration-300">
+                    <i class="fab fa-linkedin-in mr-2"></i> Voir plus sur LinkedIn
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-indigo-600 text-white">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Travaillons ensemble</h2>
+            <div class="w-20 h-1 bg-white mx-auto mb-6"></div>
+            <p class="text-xl max-w-3xl mx-auto">Vous avez un projet avec de l'IA et/ou de la pédagogie ? Discutons-en !</p>
+        </div>
+
+        <div class="flex flex-col md:flex-row">
+            <div class="md:w-1/2 mb-10 md:mb-0 md:pr-8">
+                <h3 class="text-2xl font-bold mb-6">Contactez-moi</h3>
+                <form action="https://formsubmit.co/contact@emotscience.fr" method="POST" class="space-y-6">
+                    <!-- Anti-spam -->
+                    <input type="hidden" name="_captcha" value="false">
+                    <!-- Sujet du message -->
+                    <input type="hidden" name="_subject" value="Nouveau message depuis emotscience.fr">
+                    <!-- Redirection après envoi -->
+                    <input type="hidden" name="_next" value="https://emotscience.fr/merci.html">
+
+                    <div>
+                        <label for="name" class="block mb-2">Votre nom</label>
+                        <input type="text" id="name" name="name" required class="w-full px-4 py-2 rounded-md bg-indigo-700 border border-indigo-500 focus:outline-none focus:ring-2 focus:ring-white text-white">
+                    </div>
+                    <div>
+                        <label for="email" class="block mb-2">Votre email</label>
+                        <input type="email" id="email" name="email" required class="w-full px-4 py-2 rounded-md bg-indigo-700 border border-indigo-500 focus:outline-none focus:ring-2 focus:ring-white text-white">
+                    </div>
+                    <div>
+                        <label for="message" class="block mb-2">Votre message</label>
+                        <textarea id="message" name="message" rows="5" required class="w-full px-4 py-2 rounded-md bg-indigo-700 border border-indigo-500 focus:outline-none focus:ring-2 focus:ring-white text-white"></textarea>
+                    </div>
+                    <button type="submit" class="px-6 py-3 bg-white text-indigo-600 rounded-md font-semibold hover:bg-gray-100 transition duration-300">Envoyer le message</button>
+                </form>
+            </div>
+
+            <div class="md:w-1/2 md:pl-8">
+                <h3 class="text-2xl font-bold mb-6">Prendre rendez-vous</h3>
+
+                <!-- Calendly inline widget -->
+                <div class="calendly-inline-widget bg-white p-2 rounded-lg" style="min-width:320px;height:630px;">
+                    <div class="p-6 text-center rounded bg-indigo-700">
+                        <h4 class="font-bold text-lg mb-4">Consultation de 30 minutes</h4>
+                        <p class="mb-6">Réservez un créneau directement dans mon agenda pour échanger sur votre projet</p>
+                        <a href="https://calendly.com/arrue-marianne-emotscience/30min" target="_blank" class="px-6 py-3 bg-white text-indigo-600 rounded-md font-semibold hover:bg-gray-100 transition duration-300 inline-block">
+                            Réserver un créneau
+                        </a>
+
+                        <div class="mt-6 flex items-center justify-center space-x-4">
+                            <div class="flex items-center">
+                                <i class="far fa-clock mr-2"></i>
+                                <span>30 min</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-video mr-2"></i>
+                                <span>Visio</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-euro-sign mr-2"></i>
+                                <span>Gratuit</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 p-6 bg-indigo-800 rounded">
+                        <h4 class="font-bold text-lg mb-2">Contact direct</h4>
+                        <div class="space-y-4 mt-4">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-indigo-700 rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">Email</h4>
+                                    <a href="mailto:contact@emotscience.fr" class="hover:underline">contact@emotscience.fr</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-indigo-700 rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">LinkedIn</h4>
+                                    <a href="https://www.linkedin.com/in/mariannearrue/" target="_blank" class="hover:underline">linkedin.com/in/mariannearrue</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-indigo-700 rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <i class="fab fa-github"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">GitHub</h4>
+                                    <a href="https://github.com/MarianneHolbie" target="_blank" class="hover:underline">github.com/MarianneHolbie</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <h4 class="font-semibold mb-4">Disponibilité pour :</h4>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-3 py-1 bg-indigo-700 text-white rounded-full text-sm">Prototypes IA</span>
+                        <span class="px-3 py-1 bg-indigo-700 text-white rounded-full text-sm">Formation technique</span>
+                        <span class="px-3 py-1 bg-indigo-700 text-white rounded-full text-sm">Vulgarisation IA/ML</span>
+                        <span class="px-3 py-1 bg-indigo-700 text-white rounded-full text-sm">Consulting technique</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-12">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0">
+                <a href="#" class="text-2xl font-bold text-white">Marianne Arrue</a>
+                <p class="mt-2 text-gray-400">IA/ML • Vulgarisation • Prototypes</p>
+            </div>
+
+            <div class="flex space-x-6">
+                <a href="https://www.linkedin.com/in/mariannearrue/" target="_blank" class="text-gray-400 hover:text-white transition duration-300">
+                    <i class="fab fa-linkedin-in text-xl"></i>
+                </a>
+                <a href="https://github.com/MarianneHolbie" target="_blank" class="text-gray-400 hover:text-white transition duration-300">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+                <a href="mailto:contact@emotscience.fr" class="text-gray-400 hover:text-white transition duration-300">
+                    <i class="fas fa-envelope text-xl"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between">
+            <p class="text-gray-400 mb-4 md:mb-0">&copy; 2025 Marianne Arrue. Tous droits réservés.</p>
+            <div class="flex space-x-6">
+                <a href="mentions-legales.html" class="text-gray-400 hover:text-white transition duration-300">Mentions légales</a>
+                <a href="politique-confidentialite.html" class="text-gray-400 hover:text-white transition duration-300">Politique de confidentialité</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Mobile menu toggle
+    document.querySelector('.mobile-menu-button').addEventListener('click', function() {
+        // You would typically toggle a mobile menu here
+        console.log('Mobile menu clicked');
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Carousel functionality
+    const carouselSlides = document.querySelectorAll('.carousel-slide');
+    const carouselDots = document.querySelectorAll('.carousel-dot');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        carouselSlides.forEach(slide => slide.classList.remove('active'));
+        carouselDots.forEach(dot => dot.classList.remove('active'));
+
+        carouselSlides[index].classList.add('active');
+        carouselDots[index].classList.add('active');
+        currentSlide = index;
+    }
+
+    carouselDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => showSlide(index));
+    });
+
+    // Auto-rotate carousel
+    setInterval(() => {
+        currentSlide = (currentSlide + 1) % carouselSlides.length;
+        showSlide(currentSlide);
+    }, 5000);
+</script>
+<!-- Script Calendly -->
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+    // Code existant pour la navigation, le carousel, etc.
+
+    // Configuration formulaire de contact
+    const contactForm = document.querySelector('#contact form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Simuler l'envoi du formulaire (à remplacer par votre logique d'envoi réelle)
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Envoi en cours...';
+            submitButton.disabled = true;
+
+            // Simule un délai d'envoi
+            setTimeout(() => {
+                alert('Merci pour votre message ! Je vous répondrai dans les meilleurs délais.');
+                contactForm.reset();
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }, 1500);
+
+        });
+    }
+</script>
 </body>
-
 </html>
