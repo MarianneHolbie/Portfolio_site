@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marianne Arrue | Biotech, Médiation Scientifique & IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+        }
+
+        .tech-bg {
+            background-color: #f8fafc;
+            background-image:
+                    radial-gradient(at 0% 0%, hsla(210,80%,90%,0.2) 0px, transparent 50%),
+                    radial-gradient(at 100% 0%, hsla(340,80%,90%,0.2) 0px, transparent 50%);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #c026d3 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4f46e5;
+            border: 4px solid #e9d5ff;
+        }
+
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: #c4b5fd;
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .animated-underline {
+            position: relative;
+            display: inline-block;
+        }
+
+        .animated-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #4f46e5;
+            transition: width 0.3s ease;
+        }
+
+        .animated-underline:hover::after {
+            width: 100%;
+        }
+
+        .wave-shape {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            z-index: 1;
+        }
+
+        .wave-shape svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 150px;
+        }
+
+        .wave-shape .shape-fill {
+            fill: #FFFFFF;
+        }
+
+        .tech-tag {
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-buttons {
+            position: relative;
+            z-index: 10;
+            margin-bottom: 40px;
+        }
+
+        .blog-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .carousel-slide {
+            display: none;
+            width: 100%;
+            transition: opacity 0.5s ease;
+        }
+
+        .carousel-slide.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+        }
+
+        .carousel-dot.active {
+            background: white;
+        }
+    </style>
+</head>
+<body class="tech-bg">
+<!-- Navigation -->
+<nav class="bg-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="flex justify-between items-center py-4">
+            <div class="flex items-center space-x-4">
+                <a href="#" class="flex items-center">
+                    <img src="./imgs/Logo_MA_emotscience.png" alt="Marianne Arrue" class="h-16">
+                    <span class="text-2xl font-bold text-indigo-600">Marianne Arrué</span>
+                </a>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html#parcours" class="text-gray-700 hover:text-indigo-600 animated-underline">Parcours</a>
+                <a href="index.html#expertise" class="text-gray-700 hover:text-indigo-600 animated-underline">Expertise</a>
+                <a href="index.html#projets" class="text-gray-700 hover:text-indigo-600 animated-underline">Projets</a>
+                <a href="index.html#blog" class="text-gray-700 hover:text-indigo-600 animated-underline">Blog</a>
+                <a href="index.html#contact" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition duration-300">Contact</a>
+            </div>
+            <div class="md:hidden flex items-center">
+                <button class="outline-none mobile-menu-button">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                        <path d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<h2 class="text-2xl font-bold mb-4">Mentions légales</h2>
+<p class="mb-4"><strong>Éditeur du site :</strong> Marianne Arrue - Auto-entrepreneur</p>
+<p class="mb-4"><strong>Adresse :</strong> 31400 Toulouse</p>
+<p class="mb-4"><strong>Numéro SIRET :</strong> 83251241200012</p>
+<p class="mb-4"><strong>Contact :</strong> contact@emotscience.fr</p>
+<p class="mb-4"><strong>Hébergeur :</strong> OVH SAS - 2 rue Kellermann - 59100 Roubaix - France</p>
+
+
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-12">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0">
+                <a href="#" class="text-2xl font-bold text-white">Marianne Arrue</a>
+                <p class="mt-2 text-gray-400">IA/ML • Vulgarisation • Prototypes</p>
+            </div>
+
+            <div class="flex space-x-6">
+                <a href="https://www.linkedin.com/in/mariannearrue/" target="_blank" class="text-gray-400 hover:text-white transition duration-300">
+                    <i class="fab fa-linkedin-in text-xl"></i>
+                </a>
+                <a href="https://github.com/mariannearrue" target="_blank" class="text-gray-400 hover:text-white transition duration-300">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+                <a href="mailto:contact@mariannearrue.fr" class="text-gray-400 hover:text-white transition duration-300">
+                    <i class="fas fa-envelope text-xl"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between">
+            <p class="text-gray-400 mb-4 md:mb-0">&copy; 2025 Marianne Arrue. Tous droits réservés.</p>
+            <div class="flex space-x-6">
+                <a href="mentions-legales.html" class="text-gray-400 hover:text-white transition duration-300">Mentions légales</a>
+                <a href="politique-confidentialite.html" class="text-gray-400 hover:text-white transition duration-300">Politique de confidentialité</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Mobile menu toggle
+    document.querySelector('.mobile-menu-button').addEventListener('click', function() {
+        // You would typically toggle a mobile menu here
+        console.log('Mobile menu clicked');
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Carousel functionality
+    const carouselSlides = document.querySelectorAll('.carousel-slide');
+    const carouselDots = document.querySelectorAll('.carousel-dot');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        carouselSlides.forEach(slide => slide.classList.remove('active'));
+        carouselDots.forEach(dot => dot.classList.remove('active'));
+
+        carouselSlides[index].classList.add('active');
+        carouselDots[index].classList.add('active');
+        currentSlide = index;
+    }
+
+    carouselDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => showSlide(index));
+    });
+
+    // Auto-rotate carousel
+    setInterval(() => {
+        currentSlide = (currentSlide + 1) % carouselSlides.length;
+        showSlide(currentSlide);
+    }, 5000);
+</script>
+
+</body>
+</html>
