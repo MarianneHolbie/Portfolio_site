@@ -59,4 +59,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         return parent ? parent.id : 'unknown';
     }
+    console.log('🔍 Tracking initialisé - Site de Marianne Arrue');
 });

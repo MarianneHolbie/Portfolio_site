@@ -895,31 +895,5 @@
 <script src="./js/tracking.js"></script>
 <!-- Script Calendly -->
 <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-<script>
-    // Code existant pour la navigation, le carousel, etc.
-
-    // Configuration formulaire de contact
-    const contactForm = document.querySelector('#contact form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Simuler l'envoi du formulaire (à remplacer par votre logique d'envoi réelle)
-            const submitButton = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitButton.textContent;
-            submitButton.textContent = 'Envoi en cours...';
-            submitButton.disabled = true;
-
-            // Simule un délai d'envoi
-            setTimeout(() => {
-                alert('Merci pour votre message ! Je vous répondrai dans les meilleurs délais.');
-                contactForm.reset();
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-            }, 1500);
-
-        });
-    }
-</script>
 </body>
 </html>
